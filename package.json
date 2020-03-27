@@ -1,6 +1,6 @@
 {
-  "name": "TODO",
-  "description": "TODO",
+  "name": "covid19india",
+  "description": "COVID-19 India",
   "version": "0.0.1",
   "scripts": {
     "start": "sapper dev",

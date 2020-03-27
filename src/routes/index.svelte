@@ -1,48 +1,44 @@
+<script>
+	import { onMount } from "svelte";
+	let data = [];
+	let date;
+	onMount(async () => {
+	  const res = await fetch(
+	    "https://api.covid19api.com/live/country/india/status/confirmed"
+	  );
+	  const json = await res.json();
+	  console.log(json);
+	  data = json.sort((a, b) => {
+	    return new Date(b.Date) - new Date(a.Date);
+	  });
+	  console.log(data);
+	});
+</script>
 <style>
-	h1,
-	figure,
-	p {
-	  text-align: center;
-	  margin: 0 auto;
-	}
-
-	h1 {
-	  font-size: 2.8em;
-	  text-transform: uppercase;
-	  font-weight: 700;
-	  margin: 0 0 0.5em 0;
-	}
-
-	figure {
-	  margin: 0 0 1em 0;
-	}
-
-	img {
-	  width: 100%;
-	  max-width: 400px;
-	  margin: 0 0 1em 0;
-	}
-
-	p {
-	  margin: 1em auto;
-	}
-
-	@media (min-width: 480px) {
-	  h1 {
-	    font-size: 4em;
-	  }
-	}
+  table,
+  th,
+  td {
+    border: 1px solid black;
+  }
 </style>
-
 <svelte:head>
 	<title>COVID-19 India</title>
 </svelte:head>
 
-<h1>Great success!</h1>
-
-<figure>
-	<img alt='Borat' src='great-success.png'>
-	<figcaption>HIGH FIVE!</figcaption>
-</figure>
-
-<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>
+<h1>Indian Confirmed Cases</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+			<th scope="col">Cases</th>
+    </tr>
+  </thead>
+	{#each data as d}
+  <tbody>
+    <tr>
+      <td>{d.Date}</td>
+      <td>{d.Cases}</td>
+    </tr>
+  </tbody>
+	{/each}
+</table>

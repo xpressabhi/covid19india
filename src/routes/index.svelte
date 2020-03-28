@@ -46,10 +46,9 @@
     text-align: center;
   }
 
-  .stat h3,
-  .stat h4 {
+  .stat h3 {
     margin: 0;
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 100;
   }
 
@@ -57,19 +56,16 @@
     margin: 0;
     font-weight: 100;
   }
-
-  .stat.flex-row p {
-    padding-left: 0.5rem;
-  }
 </style>
 
 <svelte:head>
   <title>COVID-19 India</title>
 </svelte:head>
 
-<div class="jumbotron">
-  <h2 class="display-4">COVID-19, India</h2>
-  <span class="small text-muted">+ = Added today</span>
+<div class="jumbotron text-center">
+  <h2 class="display-4">COVID-19</h2>
+  <h4>Indian Cases</h4>
+  <span class="small">+ = New(delta) today</span>
 </div>
 
 <div class="card border-0 my-2 bg-transparent">
@@ -79,24 +75,24 @@
       justify-content-between">
       <div class="stat p-2">
         <h3>+{newConfirmed}</h3>
-        <p>Confirmed {totalConfirmed}</p>
+        <p>{totalConfirmed}</p>
+        <p>Confirmed</p>
       </div>
       <div class="stat p-2">
         <h3>+{newDeaths}</h3>
-        <p>Deaths {totalDeaths}</p>
+        <p>{totalDeaths}</p>
+        <p>Deaths</p>
       </div>
       <div class="stat p-2">
         <h3>+{newRecovered}</h3>
-        <p>Recovered {totalRecovered}</p>
+        <p>{totalRecovered}</p>
+        <p>Recovered</p>
       </div>
     </div>
   </div>
 </div>
 <div class="py-5 bg-light text-muted">
-  <br />
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-8">
         <div class="font-weight-bold text-uppercase text-lg text-dark mb-3">
           COVID-19
         </div>
@@ -115,15 +111,5 @@
             Abhishek Maurya
           </a>
         </p>
-
-      </div>
-      <div class="col-md-4">
-        <img
-          src="https://res.cloudinary.com/xpsabhi/image/upload/v1547488584/undraw_contact_us_15o2.svg"
-          class="img-fluid"
-          alt="" />
-      </div>
-    </div>
   </div>
-  <br />
 </div>

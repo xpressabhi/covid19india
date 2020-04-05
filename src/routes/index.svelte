@@ -17,7 +17,6 @@
       .filter(d => d.notes !== "Details awaited")
       .filter(d => d.notes !== "Details Awaited")
       .sort((a, b) => Number(b.patientnumber) - Number(a.patientnumber));
-    console.log(data);
     visible = true;
   });
 </script>

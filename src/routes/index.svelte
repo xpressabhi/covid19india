@@ -57,7 +57,6 @@
 <div class="card shadow my-2 border-0">
   <div class="card-body">
   <p>#P{pat.patientnumber} : {pat.notes}</p>
-  <p>{pat.backupnotes}</p>
   </div>
 </div>
 {/each}

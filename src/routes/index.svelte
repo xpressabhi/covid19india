@@ -4,6 +4,7 @@
   const start = `${dt.getFullYear()}-0${dt.getMonth() +
     1}-${dt.getDate()}T00:00:00Z`;
   let data = [];
+  let visible = false;
 
   const dataurl = `https://api.covid19india.org/raw_data.json`;
   onMount(async () => {
@@ -17,6 +18,7 @@
       .filter(d => d.notes !== "Details Awaited")
       .sort((a, b) => Number(b.patientnumber) - Number(a.patientnumber));
     console.log(data);
+    visible = true;
   });
 </script>
 
@@ -50,6 +52,7 @@
   <h4>How it's spreading</h4>
   <span class="small">Missing patient number = Details awaited.</span>
 </div>
+{#if visible}
 {#each data as pat}
 <div class="card shadow my-2 border-0">
   <div class="card-body">
@@ -58,6 +61,17 @@
   </div>
 </div>
 {/each}
+{:else}
+<div class="card shadow my-2 border-0">
+  <div class="card-body text-center">
+  <p>Loading patient data...</p>
+  <div class="spinner-border" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+  </div>
+</div>
+
+{/if}
 <!-- <div class="card border-0 my-2 bg-transparent">
   <div class="card-body p-0">
     <div

@@ -3,37 +3,20 @@
   const dt = new Date();
   const start = `${dt.getFullYear()}-0${dt.getMonth() +
     1}-${dt.getDate()}T00:00:00Z`;
-  let data;
+  let data = [];
 
-  let totalConfirmed = 0;
-  let newConfirmed = 0;
-  const confirmedurl = `https://api.covid19api.com/live/country/india/status/confirmed/date/${start}`;
+  const dataurl = `https://api.covid19india.org/raw_data.json`;
   onMount(async () => {
-    const res = await fetch(confirmedurl);
+    const res = await fetch(dataurl);
     const json = await res.json();
-    data = json.sort((a, b) => new Date(b.Date) - new Date(a.Date));
-    newConfirmed = Number(data[0].Cases) - Number(data[data.length - 1].Cases);
-    totalConfirmed = data[0].Cases;
-  });
-  let totalDeaths = 0;
-  let newDeaths = 0;
-  const deathsurl = `https://api.covid19api.com/live/country/india/status/deaths/date/${start}`;
-  onMount(async () => {
-    const res = await fetch(deathsurl);
-    const json = await res.json();
-    data = json.sort((a, b) => new Date(b.Date) - new Date(a.Date));
-    newDeaths = Number(data[0].Cases) - Number(data[data.length - 1].Cases);
-    totalDeaths = data[0].Cases;
-  });
-  let totalRecovered = 0;
-  let newRecovered = 0;
-  const recoveredurl = `https://api.covid19api.com/live/country/india/status/recovered/date/${start}`;
-  onMount(async () => {
-    const res = await fetch(recoveredurl);
-    const json = await res.json();
-    data = json.sort((a, b) => new Date(b.Date) - new Date(a.Date));
-    newRecovered = Number(data[0].Cases) - Number(data[data.length - 1].Cases);
-    totalRecovered = data[0].Cases;
+    data = json.raw_data
+      .filter(d => d.dateannounced)
+      .filter(d => d.notes)
+      .filter(d => d.agebracket)
+      .filter(d => d.notes !== "Details awaited")
+      .filter(d => d.notes !== "Details Awaited")
+      .sort((a, b) => Number(b.patientnumber) - Number(a.patientnumber));
+    console.log(data);
   });
 </script>
 
@@ -64,11 +47,18 @@
 
 <div class="jumbotron text-center">
   <h2 class="display-4">COVID-19</h2>
-  <h4>Indian Cases</h4>
-  <span class="small">+ = New(delta) today</span>
+  <h4>How it's spreading</h4>
+  <span class="small">Missing patient number = Details awaited.</span>
 </div>
-
-<div class="card border-0 my-2 bg-transparent">
+{#each data as pat}
+<div class="card shadow my-2 border-0">
+  <div class="card-body">
+  <p>#P{pat.patientnumber} : {pat.notes}</p>
+  <p>{pat.backupnotes}</p>
+  </div>
+</div>
+{/each}
+<!-- <div class="card border-0 my-2 bg-transparent">
   <div class="card-body p-0">
     <div
       class="d-flex flex-row align-content-stretch flex-wrap
@@ -90,7 +80,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <div class="py-5 bg-light text-muted">
   <div class="container-fluid">
         <div class="font-weight-bold text-uppercase text-lg text-dark mb-3">

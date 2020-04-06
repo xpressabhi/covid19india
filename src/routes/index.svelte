@@ -21,27 +21,6 @@
   });
 </script>
 
-<style>
-  /* Stat */
-  .stat {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .stat h3 {
-    margin: 0;
-    font-size: 3rem;
-    font-weight: 100;
-  }
-
-  .stat p {
-    margin: 0;
-    font-weight: 100;
-  }
-</style>
-
 <svelte:head>
   <title>COVID-19 India</title>
 </svelte:head>

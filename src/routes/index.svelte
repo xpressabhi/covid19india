@@ -34,7 +34,8 @@
 {#each data as pat}
 <div class="card shadow my-2 border-0">
   <div class="card-body">
-  <p>#P{pat.patientnumber} : {pat.notes}</p>
+  <p>#P{pat.patientnumber}[Age {pat.agebracket}] : {pat.notes}</p>
+  <span class="small">Deteced @ {pat.detectedcity} {pat.detecteddistrict} {pat.detectedstate}</span>
   </div>
 </div>
 {/each}

@@ -35,7 +35,7 @@
 <div class="card shadow my-2 border-0">
   <div class="card-body">
   <p>#P{pat.patientnumber}[Age {pat.agebracket}] : {pat.notes}</p>
-  <span class="small">Deteced @ {pat.detectedcity} {pat.detecteddistrict} {pat.detectedstate}</span>
+  <span class="small">Detected @ {pat.detectedcity} {pat.detecteddistrict} {pat.detectedstate}</span>
   </div>
 </div>
 {/each}
@@ -50,29 +50,6 @@
 </div>
 
 {/if}
-<!-- <div class="card border-0 my-2 bg-transparent">
-  <div class="card-body p-0">
-    <div
-      class="d-flex flex-row align-content-stretch flex-wrap
-      justify-content-between">
-      <div class="stat p-2">
-        <h3>+{newConfirmed}</h3>
-        <p>{totalConfirmed}</p>
-        <p>Confirmed</p>
-      </div>
-      <div class="stat p-2">
-        <h3>+{newDeaths}</h3>
-        <p>{totalDeaths}</p>
-        <p>Deaths</p>
-      </div>
-      <div class="stat p-2">
-        <h3>+{newRecovered}</h3>
-        <p>{totalRecovered}</p>
-        <p>Recovered</p>
-      </div>
-    </div>
-  </div>
-</div> -->
 <div class="py-5 bg-light text-muted">
   <div class="container-fluid">
         <div class="font-weight-bold text-uppercase text-lg text-dark mb-3">
